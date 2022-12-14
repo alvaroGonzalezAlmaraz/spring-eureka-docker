@@ -9,6 +9,7 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -100,21 +101,28 @@ public class CustomerRestController {
 
     private String getProductName(long id){
         WebClient build = webclientBuider.clientConnector(new ReactorClientHttpConnector(client))
-                .baseUrl("http://localhost:8082/product")
+                .baseUrl("http://bussinesdomain-productos/product")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8082/product"))
+                .defaultUriVariables(Collections.singletonMap("url", "http://bussinesdomain-productos/product"))
                 .build();
 
-        JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
-                .retrieve().bodyToMono(JsonNode.class).block();
-        assert block != null;
-        return block.get("name").asText();
-
+        try{
+            JsonNode block = build.method(HttpMethod.GET)
+                    .uri("/" + id)
+                    .retrieve()
+                    .bodyToMono(JsonNode.class).block();
+            assert block != null;
+            return block.get("name").asText();
+        } catch (Exception e){
+            System.out.printf("Error: " + e.getMessage());
+        }
+        
+        return null;
     }
 
     private List<?> getTransactions(String iban){
         WebClient build = webclientBuider.clientConnector(new ReactorClientHttpConnector(client))
-                .baseUrl("http://localhost:8081/transaction")
+                .baseUrl("http://bussinesdomain-transaction/transaction")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
         List<?> transactions = build.method(HttpMethod.GET)
