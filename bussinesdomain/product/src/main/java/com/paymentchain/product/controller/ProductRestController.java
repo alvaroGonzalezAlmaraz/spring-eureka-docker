@@ -3,7 +3,6 @@ package com.paymentchain.product.controller;
 import com.paymentchain.product.entities.Product;
 import com.paymentchain.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,16 +13,11 @@ import java.util.Optional;
 @RequestMapping("/product")
 public class ProductRestController {
 
-    @Autowired(required=false)
+    @Autowired
     ProductRepository productRepository;
-
-    @Value("${user.role}")
-    private String role;
 
     @GetMapping()
     public List<Product> findAll(){
-
-        System.out.println("El rol es: " + role);
         return productRepository.findAll();
     }
 
