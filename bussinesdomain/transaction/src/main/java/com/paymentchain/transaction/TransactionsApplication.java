@@ -1,4 +1,4 @@
-package transaction;
+package com.paymentchain.transaction;
 
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.boot.SpringApplication;

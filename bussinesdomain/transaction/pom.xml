@@ -5,7 +5,6 @@
     <modelVersion>4.0.0</modelVersion>
     <description>Demo project for Spring Boot</description>
 
-
     <parent>
         <artifactId>bussinesdomain</artifactId>
         <groupId>com.paymentchain.bussinesdomain</groupId>
@@ -16,6 +15,7 @@
     <artifactId>transactions</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>transaction</name>
+
     <dependencies>
         <dependency>
             <groupId>org.yaml</groupId>
@@ -23,6 +23,7 @@
             <version>1.27</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>

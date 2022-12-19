@@ -1,4 +1,4 @@
-package transaction.entities;
+package com.paymentchain.transaction.entities;
 
 import lombok.Data;
 

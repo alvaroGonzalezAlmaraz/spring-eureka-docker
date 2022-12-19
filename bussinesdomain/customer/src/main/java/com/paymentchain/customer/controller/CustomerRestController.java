@@ -92,7 +92,7 @@ public class CustomerRestController {
             .option(ChannelOption.SO_KEEPALIVE, true)
             .option(EpollChannelOption.TCP_KEEPCNT, 300)
             .option(EpollChannelOption.TCP_KEEPINTVL, 60)
-            .responseTimeout(Duration.ofSeconds(1))
+            .responseTimeout(Duration.ofSeconds(10))
             .doOnConnected(connection->{
                 connection.addHandlerLast(new ReadTimeoutHandler(5000, TimeUnit.MILLISECONDS));
                 connection.addHandlerLast(new WriteTimeoutHandler(5000, TimeUnit.MILLISECONDS));
@@ -100,13 +100,16 @@ public class CustomerRestController {
 
     private String getProductName(long id){
         WebClient build = webclientBuider.clientConnector(new ReactorClientHttpConnector(client))
-                .baseUrl("http://localhost:8082/product")
+                .baseUrl("http://businessdomain-productos/product")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8082/product"))
+                .defaultUriVariables(Collections.singletonMap("url", "http://businessdomain-productos/product"))
                 .build();
 
-        JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
-                .retrieve().bodyToMono(JsonNode.class).block();
+        JsonNode block = build.method(HttpMethod.GET)
+                .uri("/" + id)
+                .retrieve()
+                .bodyToMono(JsonNode.class)
+                .block();
         assert block != null;
         return block.get("name").asText();
 
@@ -114,10 +117,10 @@ public class CustomerRestController {
 
     private List<?> getTransactions(String iban){
         WebClient build = webclientBuider.clientConnector(new ReactorClientHttpConnector(client))
-                .baseUrl("http://localhost:8081/transaction")
+                .baseUrl("http://businessdomain-transactions/transaction")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
-        List<?> transactions = build.method(HttpMethod.GET)
+        return build.method(HttpMethod.GET)
                 .uri(uriBuilder ->
                         uriBuilder.path("/customer/transaction")
                 .queryParam("ibanAccount", iban)
@@ -125,7 +128,6 @@ public class CustomerRestController {
                 .retrieve().bodyToFlux(Object.class)
                 .collectList()
                 .block();
-        return transactions;
     }
 
 }
