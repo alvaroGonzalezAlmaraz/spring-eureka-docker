@@ -1,13 +1,17 @@
 ## YAML Template.
 springdoc:
   swagger-ui:
-      path: /swagger/index.html
-      enabled: true
+    path: /swagger/index.html
+    enabled: true
+server:
+  port: 8081
 eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
 spring:
+  application:
+    name: businessdomain-customer
   cloud:
     config:
       discovery:
@@ -20,6 +24,14 @@ spring:
       #label: latest
       username: admin
       password: qwerty
-      retry: 
+      retry:
         max-attempts: 1
         max-interval: 1000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

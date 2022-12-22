@@ -14,13 +14,13 @@ public class CustomerApplication {
 		SpringApplication.run(CustomerApplication.class, args);
 	}
 
-/*	@Bean
+	@Bean
 	public GroupedOpenApi publicApi() {
 		return GroupedOpenApi.builder()
 				.group("springshop-public")
 				.packagesToScan("com.paymentchain")
 				.build();
-	}*/
+	}
 
 /*	@Bean
 	@LoadBalanced
