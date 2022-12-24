@@ -3,11 +3,15 @@ springdoc:
   swagger-ui:
       path: /swagger/index.html
       enabled: true
+server:
+  port: 8082
 eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
 spring:
+  application:
+    name: businessdomain-product
   cloud:
     config:
       discovery:
