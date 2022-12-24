@@ -14,7 +14,6 @@
     <modules>
         <module>bussinesdomain</module>
         <module>infraestructuredomain</module>
-        <module>infraestructuredomain/adminserver</module>
     </modules>
 
      <properties>
