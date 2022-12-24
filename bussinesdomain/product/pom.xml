@@ -14,8 +14,7 @@
     <groupId>com.paymentchain</groupId>
     <artifactId>product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>transaction</name>
-
+    <name>product</name>
 
     <dependencies>
         <dependency>

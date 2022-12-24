@@ -1,8 +1,8 @@
-package transaction.repository;
+package com.paymentchain.transaction.repository;
 
+import com.paymentchain.transaction.entities.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import transaction.entities.Transaction;
 
 import java.util.List;
 

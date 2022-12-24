@@ -15,10 +15,6 @@
 	<artifactId>customer</artifactId>
 	<name>customer</name>
 
-	<properties>
-		<endorsed.dir>${project.build.directory}</endorsed.dir>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

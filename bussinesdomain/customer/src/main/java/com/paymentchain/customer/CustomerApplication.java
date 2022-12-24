@@ -3,9 +3,11 @@ package com.paymentchain.customer;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableEurekaClient
 public class CustomerApplication {
 
 	public static void main(String[] args) {
@@ -19,5 +21,11 @@ public class CustomerApplication {
 				.packagesToScan("com.paymentchain")
 				.build();
 	}
+
+/*	@Bean
+	@LoadBalanced
+	public WebClient.Builder loadBalancedWebClientBuilder() {
+		return WebClient.builder();
+	}*/
 
 }
