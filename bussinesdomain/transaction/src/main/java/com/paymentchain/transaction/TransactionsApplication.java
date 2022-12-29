@@ -21,5 +21,4 @@ public class TransactionsApplication {
                 .packagesToScan("com.paymentchain")
                 .build();
     }
-
 }

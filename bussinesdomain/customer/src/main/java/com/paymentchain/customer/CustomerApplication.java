@@ -22,10 +22,4 @@ public class CustomerApplication {
 				.build();
 	}
 
-/*	@Bean
-	@LoadBalanced
-	public WebClient.Builder loadBalancedWebClientBuilder() {
-		return WebClient.builder();
-	}*/
-
 }

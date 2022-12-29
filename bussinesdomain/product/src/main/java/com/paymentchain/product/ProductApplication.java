@@ -21,10 +21,6 @@ public class ProductApplication {
                 .packagesToScan("com.paymentchain")
                 .build();
     }
-    //@Bean
-    //@LoadBalanced
-    //public WebClient.Builder loadBalancedWebClientBuilder() {
-    //    return WebClient.builder();
-    //}
+
 }
 
